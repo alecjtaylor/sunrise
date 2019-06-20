@@ -11,37 +11,18 @@ f.close
 timeNow = datetime.utcnow().strftime("%H:%M:%S")
 dateNow = datetime.utcnow().strftime("%Y-%m-%d")
 
-# grab times as strings from dict
+# grab times as strings from dict using todays date as a key - the value is a list containing sunrise and sunset
 sunrise = sunriseDict[dateNow][0]
 sunset = sunriseDict[dateNow][1]
 
 #Check to see if the time objects can be used in calcs (comparisons didn't work as there was no date element to the sunrise and sunset times)
 if timeNow >= sunrise:
-    print "yes, take a photo,  the time is now " + timeNow + " and sunrise was " + sunrise
+    print 
+    print "yes, take a photo,  the time is now " + timeNow + " and sunrise was " + sunrise + " and the sunset is at " + sunset
+    print
 elif timenow >= sunset:
-    print "no, take a long exposure, the time is now " + timeNow + "and the sunset will be " + sunset
+    print
+    print "no, take a long exposure, the time is now " + timeNow + "and the sunset was at " + sunset. 
+    print
 else:
     print "Something has gone wrong!"
-
-
-
-
-
-
-# create datetime.datetime objects for use in loop
-
-
-
-
-# check to see what the sunrise and sunset times are today
-
-    # if inside take normal photo 
-
-    # if outside take long exposure photo - control exposure settings - maybe add to name 
-
-
-# check to see if a today directory exists, if not create it
-# put photo into todays directory
-
-# wait for 1 min inside of sunset-rise time and 10 mins outside
-
