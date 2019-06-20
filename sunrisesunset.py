@@ -38,9 +38,9 @@ def sunriseTimes(days):
         mydict[sunDate] = [sunrise, sunset]
     return mydict
 
-outputJson = json.dumps(sunriseTimes(2), sort_keys=True)
+outputJson = json.dumps(sunriseTimes(1), sort_keys=True)
 
 # ugly code!
 f = open("sunrise.json", "w") 
-f.write(outputJson) 
+f.write(outputJson)
 f.close() 
