@@ -22,7 +22,7 @@ if timeNow >= sunrise:
     print
 elif timenow >= sunset:
     print
-    print "no, take a long exposure, the time is now " + timeNow + "and the sunset was at " + sunset. 
+    print "no, take a long exposure, the time is now " + timeNow + "and the sunset was at " + sunset
     print
 else:
     print "Something has gone wrong!"
