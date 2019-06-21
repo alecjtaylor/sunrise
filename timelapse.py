@@ -6,25 +6,47 @@ f = open("sunrise.json", 'r')
 sunriseDict = json.load(f)
 f.close
 
-# Set time and date to now so can be used later (everything in GMT)!
-timeNow = datetime.utcnow()#.strftime("%H:%M:%S")
-dateNow = datetime.utcnow()#.strftime("%Y-%m-%d")
+#### Start Loop Here ####
 
-# grab times as strings from dict using todays date as a key - the value is a list containing sunrise and sunset
+# Set time and date to now so can be used later (everything in GMT)!
+timeNow = datetime.utcnow()
+dateNow = datetime.utcnow().strftime("%Y-%m-%d")
+
+# grab times as strings from dict using todays date as a key - the value is a list containing sunrise and sunset strings which need to be converted to datetime objects
 sunrise = str(sunriseDict[dateNow][0])
-sunriseRaw = datetime.strptime(sunrise, "%H:%M:%S")
+# Convert to datetime object
+sunriseRaw = datetime.strptime(sunrise, "%Y-%m-%d %H:%M:%S")
 
 sunset = str(sunriseDict[dateNow][1])
-sunsetRaw = datetime.strptime(sunset, "%H:%M:%S")
+# Convert to datetime object
+sunsetRaw = datetime.strptime(sunset, "%Y-%m-%d %H:%M:%S")
 
-#Check to see if the time objects can be used in calcs (comparisons didn't work as there was no date element to the sunrise and sunset times)
+#### Debugging code here ####
+
+timeNow = timeNow - timedelta(hours = 0)
+
+print timeNow
+print sunsetRaw
+
+
+# # This loop is shit - it needs to be simple and only have two options
+
+
+# if timeNow >= sunsetRaw:# and timeNow < sunsetRaw:
+#     print "Greater than sunset time"
+# elif timeNow <= sunriseRaw: #or timeNow >= sunsetRaw:
+#    print "Before sunrise time"
+# elif timeNow >= sunriseRaw:# and timeNow < sunsetRaw:
+#     print "After sunrise time"
+# else:
+#     print "Something has gone wrong!"
+
+
+# print " testing of fancy new loop"
+
 if timeNow >= sunriseRaw and timeNow < sunsetRaw:
-    print 
-    print "yes, take a photo,  the time is now " + timeNow.strftime("%H:%M:%S") + " and sunrise was " + sunrise + " and the sunset is at " + sunset
-    print
-elif timeNow <= sunriseRaw or timeNow >= sunsetRaw:
-    print
-    print "no, take a long exposure, the time is now " + timeNow.strftime("%H:%M:%S") + " and the sunset was at " + sunset
-    print
-else:
-    print "Something has gone wrong!"
+    print "Greater than sunrise time and less than sunset time"
+    print "Take normal timelapse and wait 10 seconds until next image"
+elif timeNow < sunriseRaw or timeNow >= sunsetRaw:
+    print "Less than sunrise or greater than sunset"
+    print "Take long exposure images"

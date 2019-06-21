@@ -30,11 +30,14 @@ def sunriseTimes(days):
     mydict={}
 
     for i in apiCallList:
+        print i
         r = requests.get(i)
         data = json.loads(r.content)["results"]
         sunDate = i[-10:]
-        sunrise = datetime.strptime(str(data["sunrise"]), "%I:%M:%S %p").strftime("%H:%M:%S")
-        sunset = datetime.strptime(str(data["sunset"]), "%I:%M:%S %p").strftime("%H:%M:%S")
+        sunriseT = datetime.strptime(str(data["sunrise"]), "%I:%M:%S %p").strftime("%H:%M:%S")
+        sunsetT = datetime.strptime(str(data["sunset"]), "%I:%M:%S %p").strftime("%H:%M:%S")
+        sunrise = sunDate + " " + sunriseT 
+        sunset =  sunDate + " " + sunsetT
         mydict[sunDate] = [sunrise, sunset]
     return mydict
 
