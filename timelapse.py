@@ -25,6 +25,7 @@ try:
 
         filePath = "~/images/" + yearNow + "/" + monthNow + "/" + dayNow
         # Check if todays year, month and day folder exists
+        
         if not os.path.exists(filePath):
             os.makedirs(filePath)
 
@@ -32,8 +33,8 @@ try:
 
             print "Greater than sunrise time and less than sunset time"
             
-            # camera.exposure = 'auto'
-            # camera.capture(filePath + "/" + timeNow + ".jpg")
+            camera.exposure = 'auto'
+            camera.capture(filePath + "/" + timeNow + ".jpg")
             # this needs to be put into a days worth of images in a folder
 
             print "Take normal timelapse and wait 10 seconds until next image"
@@ -44,8 +45,8 @@ try:
 
             print "Less than sunrise or greater than sunset"
             print "Take long exposure images"
-            # camera.exposure = 'night'
-            # camera.capture(filePath + "/" + timeNow + ".jpg")
+            camera.exposure = 'night'
+            camera.capture(filePath + "/" + timeNow + ".jpg")
             # this needs to be put into a days worth of images in a folder
 
             sleep(60)
