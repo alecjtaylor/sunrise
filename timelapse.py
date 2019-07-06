@@ -35,7 +35,7 @@ try:
 
             print "Greater than sunrise time and less than sunset time"
             
-            camera.exposure = 'auto'
+            camera.exposure_mode = 'auto'
             camera.capture(filePath + "/" + str(timeNow) + ".jpg")
             # this needs to be put into a days worth of images in a folder
 
@@ -47,7 +47,7 @@ try:
 
             print "Less than sunrise or greater than sunset"
             print "Take long exposure images"
-            camera.exposure = 'night'
+            camera.exposure_mode = 'night'
             camera.capture(filePath + "/" + str(timeNow) + ".jpg")
             # this needs to be put into a days worth of images in a folder
 
