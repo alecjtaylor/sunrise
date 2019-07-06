@@ -9,12 +9,16 @@ sunriseDict = json.load(f)
 f.close
 
 camera = PiCamera()
+# Turn the camera's LED off
+camera.led = False
+camera.resolution = (2592, 1944)
 
 try:   
     while True:
             
         # Set time and date to now so can be used later (everything in GMT)!
         timeNow = datetime.utcnow()
+        timeNowFilePath = datetime.utcnow().strftime("%Y-%m-%d_%H-%M-%S")
         dateNow = datetime.utcnow().strftime("%Y-%m-%d")
         yearNow = datetime.utcnow().strftime("%Y")
         monthNow = datetime.utcnow().strftime("%m")
@@ -36,7 +40,7 @@ try:
             print "Greater than sunrise time and less than sunset time"
             
             camera.exposure_mode = 'auto'
-            camera.capture(filePath + "/" + str(timeNow) + ".jpg")
+            camera.capture(filePath + "/" + str(timeNowFilePath) + ".jpg")
             # this needs to be put into a days worth of images in a folder
 
             print "Take normal timelapse and wait 10 seconds until next image"
@@ -48,7 +52,7 @@ try:
             print "Less than sunrise or greater than sunset"
             print "Take long exposure images"
             camera.exposure_mode = 'night'
-            camera.capture(filePath + "/" + str(timeNow) + ".jpg")
+            camera.capture(filePath + "/" + str(timeNowFilePath) + ".jpg")
             # this needs to be put into a days worth of images in a folder
 
             sleep(60)
