@@ -38,7 +38,7 @@ try:
 
             print "Take normal timelapse and wait 10 seconds until next image"
 
-            time.sleep(10)
+            sleep(10)
         
         elif timeNow < sunriseRaw or timeNow >= sunsetRaw:
 
@@ -48,6 +48,6 @@ try:
             # camera.capture(filePath + "/" + timeNow + ".jpg")
             # this needs to be put into a days worth of images in a folder
 
-            time.sleep(60)
+            sleep(60)
 except KeyboardInterrupt:
     print('interrupted!')
