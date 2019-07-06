@@ -9,9 +9,8 @@ sunriseDict = json.load(f)
 f.close
 
 camera = PiCamera()
-# Turn the camera's LED off
-camera.led = False
 camera.resolution = (2592, 1944)
+camera.rotation = 180
 
 try:   
     while True:
@@ -29,32 +28,22 @@ try:
         sunsetRaw = datetime.strptime(sunriseDict[dateNow][1], "%Y-%m-%d %H:%M:%S")
 
 
-        filePath = "~/images/" + str(yearNow) + "/" + str(monthNow) + "/" + str(dayNow)
+        filePath = "/home/pi/images/" + str(yearNow) + "/" + str(monthNow) + "/" + str(dayNow)
         # Check if todays year, month and day folder exists
 
         if not os.path.exists(filePath):
             os.makedirs(filePath)
 
         if timeNow >= sunriseRaw and timeNow < sunsetRaw:
-
-            print "Greater than sunrise time and less than sunset time"
-            
+            print "Take normal timelapse and wait 10 seconds until next image"
             camera.exposure_mode = 'auto'
             camera.capture(filePath + "/" + str(timeNowFilePath) + ".jpg")
-            # this needs to be put into a days worth of images in a folder
-
-            print "Take normal timelapse and wait 10 seconds until next image"
-
             sleep(10)
         
         elif timeNow < sunriseRaw or timeNow >= sunsetRaw:
-
-            print "Less than sunrise or greater than sunset"
             print "Take long exposure images"
             camera.exposure_mode = 'night'
             camera.capture(filePath + "/" + str(timeNowFilePath) + ".jpg")
-            # this needs to be put into a days worth of images in a folder
-
             sleep(60)
 except KeyboardInterrupt:
     print('interrupted!')
