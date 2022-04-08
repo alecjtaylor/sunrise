@@ -30,7 +30,7 @@ def sunriseTimes(days):
     mydict={}
 
     for i in apiCallList:
-        print i
+        print(i)
         r = requests.get(i)
         data = json.loads(r.content)["results"]
         sunDate = i[-10:]
